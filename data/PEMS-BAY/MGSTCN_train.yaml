@@ -1,0 +1,32 @@
+---
+base_dir: data/model
+log_level: INFO
+data:
+  batch_size: 64
+  dataset_dir: data/PEMS-BAY
+  test_batch_size: 64
+  val_batch_size: 64
+
+model:
+  cl_decay_steps: 50
+  horizon: 12
+  input_dim: 2
+  k: 2
+  num_nodes: 325
+  num_rnn_layers: 1
+  output_dim: 2
+  rnn_units: 64 
+  seq_len: 12
+  use_curriculum_learning: true
+
+train:
+  base_lr: 0.01
+  epoch: 0
+  epochs: 200
+  optimizer: adam
+  steps: [50,100,150]
+  global_step: 0
+  lr_decay_ratio: 0.1
+  max_grad_norm: 5
+  min_learning_rate: 2.0e-06
+
