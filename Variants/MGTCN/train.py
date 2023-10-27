@@ -30,6 +30,7 @@ def main(args):
             for l in [64]:
                 node_order=Supra_adjacency.construct_supra_adjacency("./data/PEMS08/",l=l,adj_npy=dist_mx)
                 LA=Supra_Laplace.construct_supra_Laplace("./data/PEMS08/", k = l, size = num_sensors,node_order=node_order)
+                LA[LA<0]=0
                 np.save('La'+str(l),LA)
                 DiverseGraphs.append(LA)
 
