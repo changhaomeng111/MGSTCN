@@ -133,12 +133,12 @@ class MGSTCNSupervisor(object):
         kwargs.update(self._train_kwargs)
         return self._train(sess, **kwargs)
 
-    def _train(self, sess, base_lr, epoch, steps, patience=20,epochs=100,min_learning_rate = 2e-6, lr_decay_ratio = 0.1,  save_model=1, **train_kwargs):
+    def _train(self, sess, base_lr, epoch, steps, patience=50,epochs=100,min_learning_rate = 2e-6, lr_decay_ratio = 0.1,  save_model=1, **train_kwargs):
 
         history = []
         min_val_loss = float('inf')
 
-        max_to_keep = train_kwargs.get('max_to_keep', 10)
+        max_to_keep = train_kwargs.get('max_to_keep', 100)
         saver = tf.train.Saver(tf.global_variables(), max_to_keep=max_to_keep)
         model_filename = train_kwargs.get('model_filename')
         if model_filename is not None:
