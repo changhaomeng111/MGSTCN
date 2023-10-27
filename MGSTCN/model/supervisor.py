@@ -59,7 +59,7 @@ class MGSTCNSupervisor(object):
         global_step = tf.train.get_or_create_global_step()
         self._train_op = optimizer.apply_gradients(zip(grads, tvars), global_step=global_step, name='train_op')
 
-        max_to_keep = self._train_kwargs.get('max_to_keep', 10)
+        max_to_keep = self._train_kwargs.get('max_to_keep', 100)
         self._epoch = 0
         self._saver = tf.train.Saver(tf.global_variables(), max_to_keep=max_to_keep)
 
