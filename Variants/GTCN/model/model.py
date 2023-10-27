@@ -20,7 +20,7 @@ class MGSTCNModel(object):
         cl_decay_steps = int(model_kwargs.get('cl_decay_steps', 5000))
         use_curriculum_learning = bool(model_kwargs.get('use_curriculum_learning', False))
 
-        ratelist=[1]
+        ratelist=[1,2,3]
         self._inputs = tf.placeholder(tf.float32, shape=(batch_size, seq_len, num_nodes, input_dim), name='inputs')
         cell = DilatedCell(rnn_units,num_nodes)
         EncodeCell = MGSTCNCell(rnn_units, adj_mx, k=k, num_nodes=num_nodes,ratelist=ratelist)  #,num_proj=horizon
