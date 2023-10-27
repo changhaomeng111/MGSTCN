@@ -8,7 +8,7 @@ data:
   val_batch_size: 32
 
 model:
-  cl_decay_steps: 50
+  cl_decay_steps: 3000
   horizon: 12
   input_dim: 1
   k: 2
