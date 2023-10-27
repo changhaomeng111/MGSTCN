@@ -30,6 +30,7 @@ class MGSTCNModel(object):
         with tf.variable_scope('INPUTS_SKIP'):
             inputs = tf.unstack(tf.reshape(self._inputs, (batch_size, seq_len, num_nodes * input_dim)), axis=1)
             Pinputs=inputs
+            labels_offset=inputs[-1]
 
             for rate in ratelist:
                 n_steps = len(Pinputs)
@@ -76,7 +77,7 @@ class MGSTCNModel(object):
 
             self._labels = tf.placeholder(tf.float32, shape=(batch_size, horizon, num_nodes, input_dim),name='labels')
             labels = tf.unstack(tf.reshape(self._labels, (batch_size, horizon, num_nodes * output_dim)), axis=1)
-            labels_offset = tf.zeros(shape=(batch_size, num_nodes * output_dim))
+            #labels_offset = tf.zeros(shape=(batch_size, num_nodes * output_dim))
             labels.insert(0,labels_offset)
             labels=labels[:-1]
             Pinputs = labels
