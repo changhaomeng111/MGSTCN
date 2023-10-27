@@ -59,7 +59,7 @@ class MGSTCNSupervisor(object):
         global_step = tf.train.get_or_create_global_step()
         self._train_op = optimizer.apply_gradients(zip(grads, tvars), global_step=global_step, name='train_op')
 
-        max_to_keep = self._train_kwargs.get('max_to_keep', 10)
+        max_to_keep = self._train_kwargs.get('max_to_keep', 100)
         self._epoch = 0
         self._saver = tf.train.Saver(tf.global_variables(), max_to_keep=max_to_keep)
 
@@ -133,12 +133,12 @@ class MGSTCNSupervisor(object):
         kwargs.update(self._train_kwargs)
         return self._train(sess, **kwargs)
 
-    def _train(self, sess, base_lr, epoch, steps, patience=20,epochs=100,min_learning_rate = 2e-6, lr_decay_ratio = 0.1,  save_model=1, **train_kwargs):
+    def _train(self, sess, base_lr, epoch, steps, patience=50,epochs=100,min_learning_rate = 2e-6, lr_decay_ratio = 0.1,  save_model=1, **train_kwargs):
 
         history = []
         min_val_loss = float('inf')
 
-        max_to_keep = train_kwargs.get('max_to_keep', 10)
+        max_to_keep = train_kwargs.get('max_to_keep', 100)
         saver = tf.train.Saver(tf.global_variables(), max_to_keep=max_to_keep)
         model_filename = train_kwargs.get('model_filename')
         if model_filename is not None:
@@ -206,9 +206,9 @@ class MGSTCNSupervisor(object):
         predictions = []
         y_truths = []
         for horizon_i in [2,5,11]:
-            y_truth = scaler.inverse_transform(self._data['y_test'][:, :horizon_i + 1, :, 0])
+            y_truth = scaler.inverse_transform(self._data['y_test'][:, horizon_i:(horizon_i + 1), :, 0])
             y_truths.append(y_truth)
-            y_pred = scaler.inverse_transform(y_preds[:y_truth.shape[0], :horizon_i + 1, :, 0])
+            y_pred = scaler.inverse_transform(y_preds[:y_truth.shape[0], horizon_i:(horizon_i + 1), :, 0])
             predictions.append(y_pred)
 
             mae = metrics.masked_mae_np(y_pred, y_truth, null_val=0)
