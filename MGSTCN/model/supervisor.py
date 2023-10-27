@@ -206,9 +206,9 @@ class MGSTCNSupervisor(object):
         predictions = []
         y_truths = []
         for horizon_i in [2,5,11]:
-            y_truth = scaler.inverse_transform(self._data['y_test'][:, :horizon_i+1, :, 0])
+            y_truth = scaler.inverse_transform(self._data['y_test'][:, horizon_i:(horizon_i+1), :, 0])
             y_truths.append(y_truth)
-            y_pred = scaler.inverse_transform(y_preds[:y_truth.shape[0], :horizon_i+1, :, 0])
+            y_pred = scaler.inverse_transform(y_preds[:y_truth.shape[0], horizon_i:(horizon_i+1), :, 0])
             predictions.append(y_pred)
 
             mae = metrics.masked_mae_np(y_pred, y_truth, null_val=0)
