@@ -25,6 +25,7 @@ def main(args):
             #     np.save('LA'+str(l),LA)
             #     DiverseGraphs.append(LA)
             LA=np.load('LA16.npy')
+            LA[LA<0]=0
             DiverseGraphs.append(LA)
             config = tf.ConfigProto(allow_soft_placement=True)
             os.environ["CUDA_VISIBLE_DEVICES"] = '1'
