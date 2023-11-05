@@ -29,7 +29,7 @@ def main(args):
                     dist_mx[source, target] = link_weight
 
 
-            for l in [64]:  #1,8,16,32,64
+            for l in [64]:  #8,16,32,64
                 node_order=Supra_adjacency.construct_supra_adjacency("./data/PEMS08/",l=l,adj_npy=dist_mx)
                 LA=Supra_Laplace.construct_supra_Laplace("./data/PEMS08/", k = l, size = num_sensors,node_order=node_order)
                 LA=LA[LA<0]=0
