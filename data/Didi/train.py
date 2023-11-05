@@ -25,8 +25,7 @@ def main(args):
                 LA[LA<0]=0
                 np.save('LA'+str(l),LA)
                 DiverseGraphs.append(LA)
-            #LA=np.load('LA16.npy')
-            DiverseGraphs.append(LA)
+
             config = tf.ConfigProto(allow_soft_placement=True)
             os.environ["CUDA_VISIBLE_DEVICES"] = '1'
             config.gpu_options.allow_growth = False  # 程序按需申请内存
