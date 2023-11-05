@@ -13,19 +13,19 @@ def main(args):
 
             DiverseGraphs=[]
 
-            # sz_flow = pd.read_csv(r'./data/didi/adjacentMatrix.csv', sep=',', header=None, engine='python')
-            # dat_1 = np.mat(sz_flow,dtype='float32')
-            # np.save('didiadj', dat_1)
-            # size=dat_1.shape[0]
-            # print(size)
-            #
-            # for l in [16]:
-            #     node_order=Supra_adjacency.construct_supra_adjacency(l=l,adj_npy=dat_1)
-            #     LA=Supra_Laplace.construct_supra_Laplace("./data/didi/", k = l, size = size,node_order=node_order)
-            #     np.save('LA'+str(l),LA)
-            #     DiverseGraphs.append(LA)
-            LA=np.load('LA16.npy')
-            LA[LA<0]=0
+            sz_flow = pd.read_csv(r'./data/didi/adjacentMatrix.csv', sep=',', header=None, engine='python')
+            dat_1 = np.mat(sz_flow,dtype='float32')
+            np.save('didiadj', dat_1)
+            size=dat_1.shape[0]
+            print(size)
+            
+            for l in [16]:
+                node_order=Supra_adjacency.construct_supra_adjacency(l=l,adj_npy=dat_1)
+                LA=Supra_Laplace.construct_supra_Laplace("./data/didi/", k = l, size = size,node_order=node_order)
+                LA[LA<0]=0
+                np.save('LA'+str(l),LA)
+                DiverseGraphs.append(LA)
+            #LA=np.load('LA16.npy')
             DiverseGraphs.append(LA)
             config = tf.ConfigProto(allow_soft_placement=True)
             os.environ["CUDA_VISIBLE_DEVICES"] = '1'
