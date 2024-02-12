@@ -7,9 +7,6 @@
         tensorflow>=1.3.0
         networkx>=2.5.1
   
-The PEMS04 and PEMS08 datasets can be run directly.
-The PEMS-BAY and Didi datasets need to be run by placing ".\data\PEMS-BAY or Didi\train.py" in the data directory in the same level as the 'MGSTCN/model'.
-Note that the PEMS-Bay and Didi datasets need to replace utils.py in the lib directory.
 
 (2) DataSets
 
