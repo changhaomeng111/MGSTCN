@@ -30,7 +30,7 @@ wget -O $filename 'https://drive.google.com/uc?export=download&id='$fileid
 
 The Didi raw dataset involves a protection protocol, which needs to be downloaded from the official website or the official email address of the link provided in the paper.
 
-It is worth noting that for the Didi-Xi'an dataset, the experimental parameters in this paper are different from those set in the original paper of HGCN. The batch size used in the original HGCN was 64, but the batch size used in 7 baselines of this paper was 32. There are differences in the preprocessing process based on the Didi-Xi'an dataset (this part of HGCN code has not been made public), so the experimental results are different from those in the original paper. To facilitate reproduction, we uploaded the pre-processed Didi-Xi'an dataset for this paper in ".\data\Didi".
+It is worth noting that for the Didi-Xi'an dataset, the experimental parameters in this paper are different from those set in the original paper of HGCN. The batch size used in the original HGCN was 64, but the batch size used in 7 baselines of this paper was 32. There are differences in the preprocessing process based on the Didi-Xi'an dataset (this part of HGCN code has not been made public), so the experimental results are different from those in the original paper.
 
 (3) For Three Variants:
 
